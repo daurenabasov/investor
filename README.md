@@ -1,4 +1,4 @@
-# 🪐 PUBLIC-SERVICE
+# 🪐 INVESTOR
 
 # Idea
 
