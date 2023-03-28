@@ -1,5 +1,5 @@
 import s from "./Footer.module.scss";
-import React, { useRef } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { message } from "antd";
 import line1 from "../../../Assets/Line3.png";
@@ -8,6 +8,8 @@ import line3 from "../../../Assets/Line5.png";
 import social1 from "../../../Assets/social1.png";
 import social2 from "../../../Assets/social2.png";
 import social3 from "../../../Assets/social3.png";
+import { API_MAIL } from "../../../Constants/api";
+import axios from "axios";
 
 const logo = [
   {
@@ -25,6 +27,45 @@ const logo = [
 ];
 
 const Footer = () => {
+  const [email, setEmail] = useState<any>(null);
+  const [formData, setFormData] = useState<{ [key: string]: string }>({});
+  const [error, setError] = useState<string | null>(null);
+
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const successMessage = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
+
+  const errorMessage = () => {
+    messageApi.open({
+      type: "error",
+      content: "Юзер должен быть авторизированным",
+    });
+  };
+
+  const sumbitEmail = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(API_MAIL, {
+        email,
+      });
+      setEmail(res.data);
+      successMessage();
+    } catch (error: any) {
+      setError(error);
+      errorMessage();
+    }
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  };
   return (
     <>
       <div id="about">
@@ -47,11 +88,14 @@ const Footer = () => {
                 Subscribe to stay tuned for new web design <br /> and latest
                 updates. Let's do it!
               </p>
-              <form className={s.btn}>
+              {contextHolder}
+
+              <form className={s.btn} onClick={sumbitEmail}>
                 <input
                   type="email"
                   name="user_email"
                   placeholder="Enter your email"
+                  onChange={handleChange}
                 />
                 <button value="send" type="submit">
                   Send

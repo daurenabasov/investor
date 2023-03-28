@@ -1,6 +1,11 @@
 export interface IRegister {}
 export interface IPosts {}
-export interface IAuth {}
+export interface IAuth {
+  username: string;
+  password: string;
+  access: string;
+  refresh: string;
+}
 
 export interface IUser {
   id: string;
@@ -12,3 +17,4 @@ export interface IRegisterState extends IUser {
   user: IUser | null;
   error: string | null;
 }
+

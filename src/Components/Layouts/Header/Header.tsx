@@ -20,13 +20,17 @@ const Header = () => {
   const handleSignUp = () => {
     navigate("/registration");
   };
+
+  const handleHome = () => {
+    navigate("/");
+  };
   return (
     <>
       <div id={s.header_container}>
         <div className={s.main_header}>
           <div className={s.header}>
             <div>
-              <h1>InvestInUs</h1>
+              <h1 onClick={handleHome}>InvestInUs</h1>
             </div>
             <nav>
               <ul>
