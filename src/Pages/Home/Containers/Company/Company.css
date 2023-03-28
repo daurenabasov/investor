@@ -1,0 +1,36 @@
+﻿.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide img {
+    width: 125px;
+    height: 54.37px;
+  }
+}
+
+@media screen and (max-width: 562px) {
+  .swiper-slide img {
+    width: 90px;
+    height: 54.37px;
+  }
+}
