@@ -4,6 +4,7 @@ import Layout from "../Components/Layouts/Layout/Layout";
 import Home from "../Pages/Home/Home";
 import Registration from "../Pages/Registration/Registration";
 import Auth from "../Pages/Auth/Auth";
+import Posts from "../Pages/Posts/Posts";
 
 const RoutesApp = () => {
   return (
@@ -12,7 +13,7 @@ const RoutesApp = () => {
         <Route index element={<Home />} />
         <Route path="registration" element={<Registration />} />
         <Route path="auth" element={<Auth />} />
-        <Route path="posts" />
+        <Route path="posts" element={<Posts />} />
         <Route path="posts/:id" />
       </Route>
     </Routes>
